@@ -6,16 +6,14 @@ This plugin is 3rd party and not part of p2p-streams addon
 livesport247
 
 """
-import sys,os
+import sys,os,requests
 current_dir = os.path.dirname(os.path.realpath(__file__))
 basename = os.path.basename(current_dir)
 core_dir =  current_dir.replace(basename,'').replace('parsers','')
 sys.path.append(core_dir)
-from utils.webutils import *
-from utils.pluginxbmc import *
-from utils.directoryhandle import *
-from html.parser import HTMLParser
-import acestream as ace
+from peertopeerutils.webutils import *
+from peertopeerutils.pluginxbmc import *
+from peertopeerutils.directoryhandle import *
 
 base_url = 'http://pilkalive.weebly.com'
 
