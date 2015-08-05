@@ -34,7 +34,7 @@ def livesport_main():
             if link in invalid_links:
                 continue
             name = link[1:][0:-5]
-            addDir(name,base_url+link,401,os.path.join(current_dir,"icon.png"),1,False,parser="livesports247",parserfunction="livesports_links")
+            addDir(name,base_url+link,401,os.path.join(current_dir,"icon.png"),1,True,parser="LiveSports247",parserfunction="livesports_links")
     return
 
 def livesports_links(url):
@@ -45,7 +45,7 @@ def livesports_links(url):
     if source:
         match = re.compile('<iframe scrolling="no" frameborder="0" src="(.+?)"').findall(source)
         for iframelink in match:
-            addDir(iframelink,iframelink,401,os.path.join(current_dir,"icon.png"),1,False,parser="livesports247",parserfunction="ttvnet_acestream")
+            addDir(iframelink,iframelink,401,os.path.join(current_dir,"icon.png"),1,True,parser="LiveSports247",parserfunction="ttvnet_acestream")
 
 
 def ttvnet_acestream(url):
