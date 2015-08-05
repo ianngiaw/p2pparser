@@ -44,7 +44,7 @@ def livesports_links(url):
         source = ""
     if source:
         match = re.compile('<iframe scrolling="no" frameborder="0" src="(.+?)"').findall(source)
-        for iframelink in new_match:
+        for iframelink in match:
             addDir(iframelink,iframelink,401,os.path.join(current_dir,"icon.png"),1,False,parser="livesports247",parserfunction="ttvnet_acestream")
 
 
