@@ -50,7 +50,7 @@ def livesports_links(url):
 
 def ttvnet_acestream(url):
     try:
-        source = clean(get_page_source(url))
+        source = get_page_source(url)
     except:
         source = ""
     if source:
