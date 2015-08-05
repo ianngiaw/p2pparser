@@ -31,9 +31,10 @@ def livesport_main():
     if source:
         match = list(filter(lambda x: '.html' in x, re.compile('<a href="(.+?)"').findall(source)))
         for link in match:
-            if link in invalid_links:
-                continue
             name = link[1:][0:-5]
+            if link in invalid_links:
+                addDir("[B][COLOR red]"+name+"[/COLOR][/B]", "",401,os.path.join(current_dir,"icon.png"),1,False)
+                continue
             addDir(name,base_url+link,401,os.path.join(current_dir,"icon.png"),1,True,parser="LiveSports247",parserfunction="livesports_links")
     return
 
@@ -44,8 +45,11 @@ def livesports_links(url):
         source = ""
     if source:
         match = re.compile('<iframe scrolling="no" frameborder="0" src="(.+?)"').findall(source)
-        for iframelink in match:
-            addDir(iframelink,iframelink,401,os.path.join(current_dir,"icon.png"),1,True,parser="LiveSports247",parserfunction="ttvnet_acestream")
+        if not match:
+            addDir("[B][COLOR red]iframe not found[/COLOR][/B]", "",401,os.path.join(current_dir,"icon.png"),1,False)
+        else:
+            for iframelink in match:
+                ttvnet_acestream(iframelink)
 
 
 def ttvnet_acestream(url):
@@ -55,6 +59,9 @@ def ttvnet_acestream(url):
         source = ""
     if source:
         player = re.compile('this.loadPlayer\("(.+?)"').findall(source)
-        for acehash in player:
-            ace_id = "acestream://" + acehash
-            addDir(ace_id, ace_id,1,"http://www.masterlin.ru/wp-content/uploads/2014/02/Ace-Stream-Logo.jpeg",1,False)
+        if not player:
+            addDir("[B][COLOR red]loadplayer not found[/COLOR][/B]", "",401,os.path.join(current_dir,"icon.png"),1,False)
+        else:
+            for acehash in player:
+                ace_id = "acestream://" + acehash
+                addDir(ace_id, ace_id,1,"http://www.masterlin.ru/wp-content/uploads/2014/02/Ace-Stream-Logo.jpeg",1,False)
