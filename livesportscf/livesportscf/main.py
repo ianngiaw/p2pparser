@@ -3,7 +3,7 @@
 """ 
 This plugin is 3rd party and not part of p2p-streams addon
 
-livesports247
+livesportscf
 
 """
 import sys,os,requests
@@ -33,7 +33,7 @@ def live_sports_main():
         source = source[start:end]
         stream_links = re.compile('<a title="(.+?)" href="(.+?)" target="_blank">').findall(source)
         for stream_name, stream_url in stream_links:
-            addDir(stream_name,stream_url,401,os.path.join(current_dir,"icon.png"),1,True,parser="live-sports.cf'",parserfunction="live_sports_links")
+            addDir(stream_name,stream_url,401,os.path.join(current_dir,"icon.png"),1,True,parser="livesportscf",parserfunction="live_sports_links")
     return
 
 def live_sports_links(url):
